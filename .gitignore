@@ -1,0 +1,8 @@
+## Composer
+composer.lock
+/public/
+/vendor/
+
+## DDEV
+.ddev/*
+!.ddev/config.yaml

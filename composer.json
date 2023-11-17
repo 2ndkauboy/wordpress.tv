@@ -1,0 +1,80 @@
+{
+    "require": {
+        "johnpbloch/wordpress-core-installer": "^2.0",
+        "johnpbloch/wordpress": "^6.4",
+        "wordpress-meta/wptv2": "^2.0",
+        "wordpress-meta/wptvblog2": "^2.0",
+        "composer/installers": "^2.0@dev"
+    },
+    "config": {
+        "allow-plugins": {
+            "composer/installers": true,
+            "johnpbloch/wordpress-core-installer": true
+        }
+    },
+    "extra": {
+        "installer-paths": {
+            "public/wp-content/mu-plugins/{$name}": [
+                "type:wordpress-muplugin"
+            ],
+            "public/wp-content/plugins/{$name}": [
+                "type:wordpress-plugin"
+            ],
+            "public/wp-content/themes/{$name}": [
+                "type:wordpress-theme"
+            ]
+        },
+        "wordpress-content-dir": "public/wp-content",
+        "wordpress-install-dir": "public/wordpress"
+    },
+    "repositories": [
+        {
+            "type": "composer",
+            "url": "https://wpackagist.org/"
+        },
+        {
+            "type": "package",
+            "package": [
+                {
+                    "name": "wordpress-meta/wptv2",
+                    "type": "wordpress-theme",
+                    "version": "2.0",
+                    "source": {
+                        "type": "svn",
+                        "url": "https://meta.svn.wordpress.org/sites/trunk/wordpress.tv/public_html/wp-content/themes/",
+                        "reference": "wptv2/"
+                    }
+                },
+                {
+                    "name": "wordpress-meta/wptvblog2",
+                    "type": "wordpress-theme",
+                    "version": "2.0",
+                    "source": {
+                        "type": "svn",
+                        "url": "https://meta.svn.wordpress.org/sites/trunk/wordpress.tv/public_html/wp-content/themes/",
+                        "reference": "wptvblog2/"
+                    }
+                }
+            ]
+        }
+    ],
+    "minimum-stability": "dev",
+    "scripts": {
+        "copy-mu-plugins": [
+            "mkdir -p public/wp-content/mu-plugins",
+            "cp -R mu-plugins/* public/wp-content/mu-plugins"
+        ],
+        "symlink-wp-content": [
+            "rm -rf public/wordpress/wp-content",
+            "ln -s ../wp-content public/wordpress/wp-content"
+        ],
+        "post-install-cmd": [
+            "@copy-mu-plugins",
+            "@symlink-wp-content"
+        ],
+        "post-update-cmd": [
+            "@copy-mu-plugins",
+            "@symlink-wp-content"
+        ]
+    }
+}
