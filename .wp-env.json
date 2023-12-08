@@ -1,0 +1,9 @@
+{
+  "core": "WordPress/WordPress#master",
+  "mappings": {
+    "wp-content": "./wp-content",
+    "wp-content/mu-plugins/0-sandbox.php": "./.wp-env/0-sandbox.php",
+    "wp-content/uploads/wordpress_tv_wp_env.sql": "./.wp-env/wordpress_tv_wp_env.sql",
+    "bin": "./bin"
+  }
+}

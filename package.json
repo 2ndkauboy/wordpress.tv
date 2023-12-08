@@ -1,0 +1,10 @@
+{
+  "devDependencies": {
+    "@wordpress/env": "^8.12.0"
+  },
+  "scripts": {
+    "install:env": "./bin/index.sh",
+    "create": "composer install && npm run install:env",
+    "wp-env": "wp-env"
+  }
+}

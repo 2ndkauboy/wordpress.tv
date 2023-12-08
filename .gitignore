@@ -1,8 +1,6 @@
 ## Composer
-composer.lock
-/public/
+/composer.lock
+/package-lock.json
 /vendor/
-
-## DDEV
-.ddev/*
-!.ddev/config.yaml
+/wp-content/
+/node_modules/

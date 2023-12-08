@@ -1,31 +1,20 @@
 {
     "require": {
-        "johnpbloch/wordpress-core-installer": "^2.0",
-        "johnpbloch/wordpress": "^6.4",
         "wordpress-meta/wptv2": "^2.0",
         "wordpress-meta/wptvblog2": "^2.0",
         "composer/installers": "^2.0@dev"
     },
     "config": {
         "allow-plugins": {
-            "composer/installers": true,
-            "johnpbloch/wordpress-core-installer": true
+            "composer/installers": true
         }
     },
     "extra": {
         "installer-paths": {
-            "public/wp-content/mu-plugins/{$name}": [
-                "type:wordpress-muplugin"
-            ],
-            "public/wp-content/plugins/{$name}": [
-                "type:wordpress-plugin"
-            ],
-            "public/wp-content/themes/{$name}": [
-                "type:wordpress-theme"
-            ]
-        },
-        "wordpress-content-dir": "public/wp-content",
-        "wordpress-install-dir": "public/wordpress"
+            "wp-content/mu-plugins/{$name}/": ["type:wordpress-muplugin"],
+            "wp-content/plugins/{$name}/": ["type:wordpress-plugin"],
+            "wp-content/themes/pub/{$name}/": ["type:wordpress-theme"]
+        }
     },
     "repositories": [
         {
@@ -57,24 +46,5 @@
                 }
             ]
         }
-    ],
-    "minimum-stability": "dev",
-    "scripts": {
-        "copy-mu-plugins": [
-            "mkdir -p public/wp-content/mu-plugins",
-            "cp -R mu-plugins/* public/wp-content/mu-plugins"
-        ],
-        "symlink-wp-content": [
-            "rm -rf public/wordpress/wp-content",
-            "ln -s ../wp-content public/wordpress/wp-content"
-        ],
-        "post-install-cmd": [
-            "@copy-mu-plugins",
-            "@symlink-wp-content"
-        ],
-        "post-update-cmd": [
-            "@copy-mu-plugins",
-            "@symlink-wp-content"
-        ]
-    }
+    ]
 }
