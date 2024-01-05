@@ -2,19 +2,24 @@
     "require": {
         "wordpress-meta/wptv2": "^2.0",
         "wordpress-meta/wptvblog2": "^2.0",
-        "composer/installers": "^2.0@dev"
+        "composer/installers": "^2.0@dev",
+        "wpackagist-plugin/jetpack": "^12.9@alpha"
     },
     "config": {
         "allow-plugins": {
             "composer/installers": true
+        },
+        "preferred-install": {
+            "wordpress-meta/*": "source"
         }
     },
     "extra": {
         "installer-paths": {
             "wp-content/mu-plugins/{$name}/": ["type:wordpress-muplugin"],
             "wp-content/plugins/{$name}/": ["type:wordpress-plugin"],
-            "wp-content/themes/pub/{$name}/": ["type:wordpress-theme"]
-        }
+            "wp-content/themes/{$name}/": ["type:wordpress-theme"]
+        },
+        "wordpress-content-dir": "wp-content"
     },
     "repositories": [
         {
